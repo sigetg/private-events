@@ -1,0 +1,12 @@
+<div id="<%= dom_id user %>">
+<h2><%= link_to user.email, user %></h2>
+</div>
+<h3>Created Events:</h3>
+<p>
+  <% user.created_events.each do |event| %>
+    Name: <%= event.name %><br>
+    Location: <%= event.location %><br>
+    Date: <%= event.date %><br><br>
+  <% end %>
+<p>
+
