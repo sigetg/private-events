@@ -1,24 +1,7 @@
-# README
+# private-events
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A rails app that allows authenticated users to create events, attend other user's events, and view all event listings.
 
-Things you may want to cover:
+* Ruby version: 3.2.2
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* Uses Devise for user auth
