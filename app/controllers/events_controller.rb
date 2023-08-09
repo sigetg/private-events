@@ -4,7 +4,7 @@ class EventsController < ApplicationController
 
 
   def index
-    @events = Event.all
+    @events = Event.includes(:creator)
 
     respond_to do |format|
       format.html
@@ -25,8 +25,10 @@ class EventsController < ApplicationController
     @event = current_user.created_events.build(event_params)
 
     if @event.save
-      # UserMailer.with(user: @event.creator).confirmation_email.deliver_later
-      UserMailer.sendgrid_confirmation_email(@event.creator.email).deliver_later
+      ActionCable.server.broadcast('event', @event.as_json(include: :creator))
+      UserMailer.with(user: @event.creator).confirmation_email.deliver_later
+      # TODO: Edit my mailers to make sendgrid send good emails
+      # UserMailer.sendgrid_confirmation_email(@event.creator.email).deliver_later
       redirect_to @event
     else
       render :new, status: :unprocessable_entity
