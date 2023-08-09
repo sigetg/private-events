@@ -1,5 +1,6 @@
 <%= render @user %>
 
 <div>
+  <%= button_to "Destroy this user", @user, method: :delete %>
   <%= link_to "Back to users", users_path %>
 </div>

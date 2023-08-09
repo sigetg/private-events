@@ -25,6 +25,7 @@ class EventsController < ApplicationController
     @event = current_user.created_events.build(event_params)
 
     if @event.save
+      UserMailer.with(user: @event.creator).confirmation_email.deliver_later
       redirect_to @event
     else
       render :new, status: :unprocessable_entity
