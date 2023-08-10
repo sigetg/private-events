@@ -4,9 +4,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: [:google_oauth2]
 
-  has_many :created_events, foreign_key: 'creator_id', class_name: 'Event', dependent: :destroy
-  has_many :event_attendees
-  has_many :attended_events, through: :event_attendees, source: :event
+  has_many :created_events, class_name: 'Event', foreign_key: 'creator_id', dependent: :destroy
+  has_many :enrollments
+  has_many :attended_events, through: :enrollments, source: :event
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|

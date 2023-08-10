@@ -5,7 +5,9 @@ Rails.application.routes.draw do
     sessions: 'users/sessions',
     omniauth_callbacks: 'users/omniauth_callbacks'
   }
-  resources :events
+  resources :events do
+    resources :enrollments
+  end
   resources :users
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  get 'enrollments', to: 'enrollments#index'
 end

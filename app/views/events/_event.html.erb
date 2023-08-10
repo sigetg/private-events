@@ -1,9 +1,8 @@
 <div id="<%= dom_id event %>">
-<h3><%= event.name %><h3>
+  <h2><%= event.name %></h2>
+  <% if user_signed_in? %>
+    Created by: <%= event.creator.email %>
+  <% end %>
+  <p><%= event.location %><p>
+  <p><%= event.date %><p>
 </div>
-<% if user_signed_in? %>
-  Created by: <%= event.creator.email %>
-<% end %>
-<p><%= event.location %><p>
-<p><%= event.date %><p>
-
